@@ -1,0 +1,871 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Afric-Connect",
+    "description": "Documentation for Afric-Connect backend service",
+    "contact": {}
+  },
+  "basePath": "/api/blog",
+ 
+  "consumes": [
+    "application/json"
+  ],
+  "paths": {
+    "/create": {
+      "post": {
+        "description": "create a blog",
+        "summary": "create a blog ",
+        "tags": [
+          "blog"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "description": "This is the request body object containing the user blog post message",
+            "schema": {
+              "$ref": "#/definitions/BlogData"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "description": "Value is 'success'"
+                }
+                ,
+                "data": {
+                  "$ref": "#/definitions/BlogResponse"
+                },
+                
+                "success": {
+                  "type": "boolean",
+                  "description": "true"
+                }
+                
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request payload",
+            "schema": {
+              "$ref": "#/definitions/errorMessage",
+              "success": {
+                "type": "boolean",
+                "description": "false"
+              }  
+            }
+            
+          }
+        }
+      }
+      }
+  ,
+  "/{blogId}": {
+    "get": {
+      "description": "create a blog",
+      "summary": "create a blog ",
+      "tags": [
+        "blog"
+      ],
+      "consumes": [
+        "application/json"
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "blogId",
+          "required": true,
+          "description": "This is the request id of the blog post message",
+          "schema": {
+            "$ref": "#/definitions/BlogData"
+          }
+        }
+      ],
+      "responses": {
+        "201": {
+          "description": "Success",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "Value is 'success'"
+              }
+              ,
+              "data": {
+                "$ref": "#/definitions/BlogResponse"
+              },
+              
+              "success": {
+                "type": "boolean",
+                "description": "true"
+              }
+              
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid request payload",
+          "schema": {
+            "$ref": "#/definitions/errorMessage",
+            "success": {
+              "type": "boolean",
+              "description": "false"
+            }  
+          }
+          
+        }
+      }
+    }
+    }
+,
+"/update/{blogId}": {
+  "put": {
+    "description": "create a blog",
+    "summary": "create a blog ",
+    "tags": [
+      "blog"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "parameters": [
+      {
+        "in": "path",
+        "name": "blogId",
+        "required": true,
+        "description": "This is the id of blog to update",
+        "schema": {
+          "$ref": "#/definitions/BlogData"
+        }
+      },
+      {
+        "in": "body",
+        "name": "newPost",
+        "required": true,
+        "description": "This is the new message of blog to update",
+        "schema": {
+          "$ref": "#/definitions/BlogData"
+        }
+      }
+      
+    ],
+    "responses": {
+      "201": {
+        "description": "Success",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "description": "Value is 'success'"
+            }
+            ,
+            "data": {
+              "$ref": "#/definitions/BlogResponse"
+            },
+            
+            "success": {
+              "type": "boolean",
+              "description": "true"
+            }
+            
+          }
+        }
+      },
+      "400": {
+        "description": "Invalid request payload",
+        "schema": {
+          "$ref": "#/definitions/errorMessage",
+          "success": {
+            "type": "boolean",
+            "description": "false"
+          }  
+        }
+        
+      }
+    }
+  }
+  }
+,
+"/delete/{blogId}": {
+  "delete": {
+    "description": "create a blog",
+    "summary": "create a blog ",
+    "tags": [
+      "blog"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "parameters": [
+      {
+        "in": "path",
+        "name": "blogId",
+        "required": true,
+        "description": "id of the blog post to be deleted",
+        "schema": {
+          "$ref": "#/definitions/BlogData"
+        }
+      }
+    ],
+    "responses": {
+      "201": {
+        "description": "Success",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "description": "Value is 'success'"
+            }
+            ,
+            "data": {
+              "$ref": "#/definitions/BlogResponse"
+            },
+            
+            "success": {
+              "type": "boolean",
+              "description": "true"
+            }
+            
+          }
+        }
+      },
+      "400": {
+        "description": "Invalid request payload",
+        "schema": {
+          "$ref": "#/definitions/errorMessage",
+          "success": {
+            "type": "boolean",
+            "description": "false"
+          }  
+        }
+        
+      }
+    }
+  }
+  }
+,
+"/": {
+  "get": {
+    "description": "get all blogs",
+    "summary": "get all blogs ",
+    "tags": [
+      "blog"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "responses": {
+      "200": {
+        "description": "Success",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "description": "Value is 'success'"
+            }
+            ,
+            "data": {
+              "$ref": "#/definitions/BlogResponse"
+            },
+            
+            "success": {
+              "type": "boolean",
+              "description": "true"
+            }
+            
+          }
+        }
+      },
+      "400": {
+        "description": "Invalid request payload",
+        "schema": {
+          "$ref": "#/definitions/errorMessage",
+          "success": {
+            "type": "boolean",
+            "description": "false"
+          }  
+        }
+        
+      }
+    }
+  }
+  }
+,
+"/paginated/{page}": {
+  "get": {
+    "description": "fetch all blog per page",
+    "summary": "fetch all blog page",
+    "tags": [
+      "blog"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+           
+    "parameters": [
+      {
+        "in": "path",
+        "name": "page",
+        "type": "string",
+
+        "required": true,
+        "description": "blog post to fetch"
+        
+      }
+      
+      
+    ],
+    "responses": {
+      "200": {
+        "description": "Success",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "description": "Value is 'success'"
+            }
+            ,
+            "data": {
+              "$ref": "#/definitions/BlogResponse"
+            },
+            
+            "success": {
+              "type": "boolean",
+              "description": "true"
+            }
+            
+          }
+        }
+      },
+      "400": {
+        "description": "Invalid request payload",
+        "schema": {
+          "$ref": "#/definitions/errorMessage",
+          "success": {
+            "type": "boolean",
+            "description": "false"
+          }  
+        }
+        
+      }
+    }
+  }
+  }
+  ,
+
+  "/update-comment/{commentId}": {
+    "put": {
+      "description": "update a comment on a blog post",
+      "summary": "update a comment on a blog post",
+      "tags": [
+        "comment"
+      ],
+      "produces": [
+        "application/json"
+      ],
+              
+      "parameters": [
+        {
+          "in": "path",
+          "name": "commentId",
+          "type": "string",
+
+          "required": true,
+          "description": "blog Id to use to update comment"
+          
+        }
+        ,
+        {
+          "in": "body",
+          "name": "commentBody",
+          "type": "string",
+
+          "required": true,
+          "description": "blog Id to use to comment  ",
+          "schema": {
+            "$ref": "#/definitions/BlogComment"
+          }
+         
+        }
+        
+        
+      ],
+
+      "responses": {
+        
+        "200": {
+          "description": "Success",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "comment created successfully"
+              },
+              "data": {
+                "$ref": "#/definitions/BlogCommentEdit"
+              },
+              
+              "message":{
+                "type":"string"
+              }
+              
+            }
+          }
+        },
+          "400": {
+            "schema":  {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "description": "invalid payload "
+                },
+                "message":{
+                  "type":"string",
+                  "description": "invalid payload "
+                }
+              }
+            }
+      }
+    }
+  }  
+}  
+,
+
+"/create-comment/{blogId}": {
+  "post": {
+    "description": "post a comment on a blog post",
+    "summary": "post a comment on a blog post",
+    "tags": [
+      "comment"
+    ],
+    "produces": [
+      "application/json"
+    ],
+            
+    "parameters": [
+      {
+        "in": "path",
+        "name": "blogId",
+        "type": "string",
+
+        "required": true,
+        "description": "blog Id to use to comment"
+        
+      }
+      ,
+      {
+        "in": "body",
+        "name": "commentBody",
+        "type": "string",
+
+        "required": true,
+        "description": "blog Id to use to comment  ",
+        "schema": {
+          "$ref": "#/definitions/BlogComment"
+        }
+       
+      }
+      
+      
+    ],
+
+    "responses": {
+      
+      "200": {
+        "description": "Success",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "description": "comment created successfully"
+            },
+            "data": {
+              "$ref": "#/definitions/BlogCommentResponse"
+            },
+            
+            "message":{
+              "type":"string"
+            }
+            
+          }
+        }
+      },
+        "400": {
+          "schema":  {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "invalid payload "
+              },
+              "message":{
+                "type":"string",
+                "description": "invalid payload "
+              }
+            }
+          }
+    }
+  }
+}  
+}  
+
+,
+
+"/get-comment/{commentId}": {
+  "get": {
+    "description": "get a comment on a blog post",
+    "summary": "get a comment on a blog post",
+    "tags": [
+      "comment"
+    ],
+    "produces": [
+      "application/json"
+    ],
+            
+    "parameters": [
+      {
+        "in": "path",
+        "name": "commentId",
+        "type": "string",
+
+        "required": true,
+        "description": "comment Id to use to comment"
+        
+      }
+      
+      
+    ],
+
+    "responses": {
+      
+      "200": {
+        "description": "Success",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "description": "comment created successfully"
+            },
+            "data": {
+              "$ref": "#/definitions/BlogCommentResponse"
+            },
+            
+            "message":{
+              "type":"string"
+            }
+            
+          }
+        }
+      },
+        "400": {
+          "schema":  {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "invalid payload "
+              },
+              "message":{
+                "type":"string",
+                "description": "invalid payload "
+              }
+            }
+          }
+    }
+  }
+}  
+},  
+
+"/delete-comment/{commentId}": {
+  "delete": {
+    "description": "delete a comment on a blog post",
+    "summary": "delete a comment on a blog post",
+    "tags": [
+      "comment"
+    ],
+    "produces": [
+      "application/json"
+    ],
+            
+    "parameters": [
+      {
+        "in": "path",
+        "name": "commentId",
+        "type": "string",
+
+        "required": true,
+        "description": "comment Id to use to delete a ccomment"
+        
+      }
+      
+      
+    ],
+
+    "responses": {
+      
+      "200": {
+        "description": "Success",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "description": "comment created successfully"
+            },
+            "data": {
+              "$ref": "#/definitions/BlogCommentResponse"
+            },
+            
+            "message":{
+              "type":"string"
+            }
+            
+          }
+        }
+      },
+        "400": {
+          "schema":  {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "invalid payload "
+              },
+              "message":{
+                "type":"string",
+                "description": "invalid payload "
+              }
+            }
+          }
+    }
+  }
+}  
+}  
+,
+"/comments/{blogId}": {
+  "get": {
+    "description": "get all comment on a blog post",
+    "summary": "get all comment on a blog post",
+    "tags": [
+      "comment"
+    ],
+    "produces": [
+      "application/json"
+    ],
+            
+    "parameters": [
+      {
+        "in": "path",
+        "name": "blogId",
+        "type": "string",
+
+        "required": true,
+        "description": "blog Id to use tofetch a comment"
+        
+      }
+      
+      
+    ],
+
+    "responses": {
+      
+      "200": {
+        "description": "Success",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "description": "comment created successfully"
+            },
+            "data": {
+              "$ref": "#/definitions/BlogCommentResponse"
+            },
+            
+            "message":{
+              "type":"string"
+            }
+            
+          }
+        }
+      },
+        "400": {
+          "schema":  {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "invalid payload "
+              },
+              "message":{
+                "type":"string",
+                "description": "invalid payload "
+              }
+            }
+          }
+    }
+  }
+}  
+}  
+
+
+  },
+  
+  "definitions": {
+
+    "BlogData": {
+      "type": "object",
+      "title": "Blog data",
+      "required": [
+        "blogBody"
+      ],
+      "properties": {
+      "blogBody": {
+        "type": "string",
+        "description": "blog message "
+      }
+      }
+    },
+    "BlogCommentEdit": {
+      "type": "object",
+      "title": "BlogCommentEdit",
+      "required": [
+        "newComment"
+      ],
+      "properties": {
+      "newComment": {
+        "type": "string",
+        "description": "blog message "
+      }
+      }
+    },
+    "BlogComment": {
+      "type": "object",
+      "title": "Comment",
+      "required": [
+        "commentBody"
+      ],
+      "properties": {
+      "commentBody": {
+        "type": "string",
+        "description": "blog message "
+      }
+      }
+    },
+    
+    "BlogResponse": {
+      "type": "object",
+      "title": "BlogResponse",
+      
+      "properties": {
+        
+      "message": {
+        "type": "string",
+        "description": "Blog created  successfully"
+      },
+      "_id": {
+        "type": "string",
+        "description": "6143a04f134dd23234eaf3b7 "
+      },
+      "blogBody": {
+        "type": "string",
+        "description": "blog message "
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date",
+        "description": "blog created date "
+      },
+      "updatedAt": {
+        "type": "string",
+        "format": "date",
+        "description": "blog updated date "
+      }
+      
+      }
+    },
+    
+    "BlogCommentResponse": {
+      "type": "object",
+      "title": "BlogCommentResponse",
+      
+      "properties": {
+        
+      "message": {
+        "type": "string",
+        "description": "Comment created  successfully"
+      },
+      "_id": {
+        "type": "string",
+        "description": "6143a04f134dd23234eaf3b7 "
+      },
+      "comment": {
+        "type": "string",
+        "description": "Comment message "
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date",
+        "description": "Comment created date "
+      },
+      "updatedAt": {
+        "type": "string",
+        "format": "date",
+        "description": "Comment updated date "
+      }
+      
+      }
+    },
+    "errorMessage": {
+      "type": "object",
+      "title": "errorMessage",
+      
+      "properties": {
+        
+      "message": {
+        "type": "string",
+        "description": "invalid reques or payload"
+      }
+      }
+    }
+    
+  }
+}
